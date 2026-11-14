@@ -1,146 +1,111 @@
 <script lang="ts">
-  import Header from './lib/Header.svelte'
-  import Hero from './lib/Hero.svelte'
+  import ProjectImage from './lib/ProjectImage.svelte'
+  import { onMount } from 'svelte'
+  import { projects, projectGroups } from './lib/projects'
+  import Writeup from './lib/Writeup.svelte'
   import ProjectSection from './lib/ProjectSection.svelte'
-  import Footer from './lib/Footer.svelte'
 
-  const bio = `Student and robotics enthusiast at Shiv Nadar School, Gurgaon. I build hardware, write firmware, and occasionally make things that move. Atomic Fellow at the Lodha Genius Programme, Ashoka University.`;
+  let lightMode = document.documentElement.dataset.theme === 'light'
+  function toggleTheme() {
+    lightMode = !lightMode
+    const theme = lightMode ? 'light' : 'dark'
+    document.documentElement.dataset.theme = theme
+    try { localStorage.setItem('portfolio-theme', theme) } catch { /* Theme still works without storage. */ }
+  }
 
-  const highlightProjects = [
-    {
-      title: "SPIDR — Hexapod Navigation System",
-      description: "Novel perception, navigation and locomotion pipeline for hexapod robots in unstructured environments, now part of modubotics",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/SPIDR",
-      link: "https://github.com/kermitsgonnakermicide/SPIDR"
-    },
-    {
-      title: "ArrhythmiX",
-      description: "A wearable ECG monitor coupled with a multi-modal ML pipeline for real time analysis and cardiac event predicition",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/hate-cbse",
-      link: "https://github.com/kermitsgonnakermicide/hate-cbse"
-    },
-    {
-      title: "Lattice — Modular Keyboard",
-      description: "A 60% mechanical keyboard with magnetically attached modules — a macropad, sliderpad, and LED matrix — all communicating over I2C with pogo pin connectors.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/Lattice",
-      link: "https://github.com/kermitsgonnakermicide/Lattice"
-    }
-  ];
-
-  const competitiveProjects = [
-    {
-      title: "RoboCup Junior Rescue Line",
-      description: "over 2022-2026, international rescue robotics competition",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/catbot-jet",
-      link: "https://github.com/kermitsgonnakermicide/catbot-jet"
-    },
-    {
-      title: "SPIDR — Hexapod Navigation System",
-      description: "Autonomous hexapod navigation using DepthAI for cave exploration, foothold testing, and real-time path planning with sensor fusion.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/SPIDR",
-      link: "https://github.com/kermitsgonnakermicide/SPIDR"
-    },
-    {
-      title: "spooderbot",
-      description: "A multi-legged spider robot with programmable gait patterns and autonomous navigation capabilities.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/spooderbot",
-      link: "https://github.com/kermitsgonnakermicide/spooderbot"
-    }
-  ];
-
-  const hardwareProjects = [
-    {
-      title: "Arr-V2",
-      description: "Second generation of the ArrhythmiX wearable heart monitor, building on the original design with improved PCB layout and firmware.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/Arr-V2",
-      link: "https://github.com/kermitsgonnakermicide/Arr-V2"
-    },
-    {
-      title: "robodog",
-      description: "A quadruped robot dog with articulated joints and walking gait control.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/robodog",
-      link: "https://github.com/kermitsgonnakermicide/robodog"
-    },
-    {
-      title: "hexapodv2",
-      description: "Second iteration of a hexapod robot with improved kinematics and servo control.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/hexapodv2",
-      link: "https://github.com/kermitsgonnakermicide/hexapodv2"
-    },
-    {
-      title: "segway",
-      description: "A two-wheeled self-balancing robot using PID control for upright stability.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/segway",
-      link: "https://github.com/kermitsgonnakermicide/segway"
-    },
-    {
-      title: "3DPrinter",
-      description: "A custom-built 3D printer from scratch.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/3DPrinter",
-      link: "https://github.com/kermitsgonnakermicide/3DPrinter"
-    },
-    {
-      title: "devboard-v2",
-      description: "Second attempt at a custom development board withRP2350.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/devboard-v2",
-      link: "https://github.com/kermitsgonnakermicide/devboard-v2"
-    }
-  ];
-
-  const softwareProjects = [
-    {
-      title: "ModiLang",
-      description: "A custom programming language with its own interpreter, written in Python. MIT Licensed.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/ModiLang",
-      link: "https://github.com/kermitsgonnakermicide/ModiLang"
-    },
-    {
-      title: "spotifyTUI",
-      description: "A terminal-based Spotify client written in Go.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/spotifyTUI",
-      link: "https://github.com/kermitsgonnakermicide/spotifyTUI"
-    },
-    {
-      title: "AndyTracker",
-      description: "A fun tracking project built in C++.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/AndyTracker",
-      link: "https://github.com/kermitsgonnakermicide/AndyTracker"
-    },
-    {
-      title: "usb-2fa-key",
-      description: "A custom USB two-factor authentication security key.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/usb-2fa-key",
-      link: "https://github.com/kermitsgonnakermicide/usb-2fa-key"
-    },
-    {
-      title: "startupsim",
-      description: "A startup simulator built with JavaScript.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/startupsim",
-      link: "https://github.com/kermitsgonnakermicide/startupsim"
-    },
-    {
-      title: "accelPlot",
-      description: "Plots MPU6050 accelerometer data on a matplotlib graph in real-time. MIT Licensed.",
-      image: "https://opengraph.githubassets.com/1/kermitsgonnakermicide/accelPlot",
-      link: "https://github.com/kermitsgonnakermicide/accelPlot"
-    }
-  ];
+  let route = window.location.hash.slice(1) || '/'
+  $: selected = projects.find(project => route === `/projects/${project.slug}`)
+  $: document.title = selected ? `${selected.title} · Daksh Vohra` : route === '/projects' ? 'Projects · Daksh Vohra' : 'Daksh Vohra'
+  onMount(() => {
+    const navigate = () => { route = window.location.hash.slice(1) || '/'; window.scrollTo(0, 0) }
+    window.addEventListener('hashchange', navigate)
+    return () => window.removeEventListener('hashchange', navigate)
+  })
 </script>
 
-<Header />
+<header>
+  <div class="header-inner">
+    <nav aria-label="Main navigation"><a class:active={route === '/'} href="#/" aria-current={route === '/' ? 'page' : undefined}>Home</a><a class:active={route.startsWith('/projects')} href="#/projects" aria-current={route.startsWith('/projects') ? 'page' : undefined}>Projects</a></nav>
+    <button class="theme-toggle" onclick={toggleTheme} aria-label={lightMode ? 'Switch to dark mode' : 'Switch to light mode'} title={lightMode ? 'Switch to dark mode' : 'Switch to light mode'}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        {#if lightMode}<path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z" />{:else}<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5" />{/if}
+      </svg>
+    </button>
+  </div>
+</header>
+<div class="shell" class:home={route === '/'} class:catalog={route === '/projects'}>
+  <div class="frame">
+    <main>
+      {#if route === '/'}
+        <div class="landing">
+        <section class="intro" aria-labelledby="name">
+          <div class="identity"><h1 id="name">Daksh Vohra</h1></div>
+          <div class="bio"><p>Student and robotics enthusiast. I build &amp; research robots and am currently working on <a href="https://www.modubotics.in" target="_blank" rel="noopener noreferrer">Modubotics</a>. I am a <a href="https://www.lodhageniusprogramme.com/" target="_blank" rel="noopener noreferrer">Lodha Genius</a> scholar, a <a href="https://hackclub.com/" target="_blank" rel="noopener noreferrer">Hack Clubber</a> and an <a href="https://www.gradcapital.in/" target="_blank" rel="noopener noreferrer">Atomic Grant</a> recipient. If you want to get in touch, feel free to email me at daksh[at]modubotics[dot]in</p></div>
+          <nav class="socials" aria-label="Social links">
+            <a href="https://github.com/kermitsgonnakermicide" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.5 5.5 0 0 0 20 4.8 5.1 5.1 0 0 0 19.9 1S18.7.6 16 2.5a13 13 0 0 0-8 0C5.3.6 4.1 1 4.1 1A5.1 5.1 0 0 0 4 4.8a5.5 5.5 0 0 0-1.5 3.8c0 5.5 3.3 6.6 6.4 7A3.4 3.4 0 0 0 8 18.2V22"/></svg></a>
+            <a href="https://linkedin.com/in/daksh-vohra-5a039136b" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="mailto:dakshvohra@proton.me" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7.5L22 6"/></svg></a>
+          </nav>
+        </section>
+        <section class="selected" aria-label="Featured projects">
+          <div class="cards">
+            {#each projects.filter(project => project.featured) as project}
+              <a class="card" href={`#/projects/${project.slug}`}>
+                <div class="card-image"><ProjectImage src={project.image} alt={project.imageAlt || project.title} fit={project.imageFit || 'cover'} /></div>
+                <div class="card-copy"><h3>{project.title.split(' — ')[0]}</h3><p>{project.description}</p><span class="writeup-link">Read writeup ↗</span></div>
+              </a>
+            {/each}
+          </div>
+        </section>
+        </div>
+      {:else if route === '/projects'}
+        <div class="projects-page">
+          {#each projectGroups as group}
+            <ProjectSection title={group.title} sectionKey={group.title === 'Competitive Robotics' ? 'competitive' : group.title.toLowerCase()} projects={group.projects} />
+          {/each}
+        </div>
+      {:else if selected}
+        {#key selected.slug}
+          <article class="detail-page">
+            <a class="back" href="#/projects">← All projects</a>
+            <div class="detail-intro"><h1>{selected.title}</h1><p>{selected.description}</p><a class="repository" href={selected.link} target="_blank" rel="noreferrer">View on GitHub ↗</a></div>
+            <Writeup slug={selected.slug} projectTitle={selected.title} />
+          </article>
+        {/key}
+      {:else}<section class="index-page"><h1>Page not found.</h1><a class="back" href="#/">← Home</a></section>{/if}
+    </main>
 
-<main>
-  <Hero bio={bio} />
-  <ProjectSection title="Highlights" sectionKey="highlights" projects={highlightProjects} />
-  <ProjectSection title="Competitive Robotics" sectionKey="competitive" projects={competitiveProjects} />
-  <ProjectSection title="Hardware" sectionKey="hardware" projects={hardwareProjects} />
-  <ProjectSection title="Software" sectionKey="software" projects={softwareProjects} />
-</main>
-
-<Footer />
+  </div>
+</div>
 
 <style>
-  main {
-    width: 100%;
+  header { width: 100%; border-bottom: 1px solid var(--border); background: var(--bg); }
+  .header-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; min-height: 70px; display: flex; justify-content: space-between; align-items: center; }
+  header nav { display: flex; gap: 30px; }header a { color: var(--muted); text-decoration: none; font-size: 14px; padding: 14px 0; }header a.active,header a:hover { color: var(--heading); }
+  .theme-toggle { display: grid; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); cursor: pointer; }.theme-toggle:hover { color: var(--heading); background: var(--surface); }.theme-toggle svg { width: 21px; height: 21px; }
+  .shell { width: 100%; padding: 40px 32px; }.shell.home { min-height: calc(100svh - 71px); display: flex; align-items: center; }
+  .frame { width: 100%; max-width: 1036px; margin: 0 auto; }
+  .landing { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: center; gap: 40px; padding: 36px; border: 1px solid var(--border); border-radius: 26px; background: var(--surface); }
+  .intro { display: grid; gap: 23px; }
+  h1 { font-size: 36px; line-height: 1.16; font-weight: 600; letter-spacing: -.025em; color: var(--heading); }
+  .bio { grid-column: 1/-1; color: var(--body); font-size: 16px; line-height: 1.75; font-weight: 300; }
+  .bio a { color: var(--text); text-decoration: underline; text-decoration-color: var(--muted); text-underline-offset: 3px; overflow-wrap: anywhere; }.bio a:hover { color: var(--heading); text-decoration-color: currentColor; }
+  .socials { grid-column: 1/-1; display: flex; gap: 12px; }.socials a { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; color: var(--muted); border-radius: 6px; }.socials a:hover { color: var(--heading); background: var(--surface); }.socials svg { width: 21px; height: 21px; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+  .cards { display: flex; flex-direction: column; gap: 15px; }
+  .card { display: grid; grid-template-columns: 110px minmax(0,1fr); min-height: 142px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); border-radius: 7px; color: inherit; text-decoration: none; transition: border-color .15s; }.card:hover { border-color: var(--muted); }
+  .card-image { background: var(--image-bg); overflow: hidden; border-right: 1px solid var(--border); }
+  .card-copy { padding: 17px 18px; }.card h3 { color: var(--text); font-weight: 600; font-size: 18px; line-height: 1.25; }.card p { margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 1.55; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }.writeup-link { display: inline-block; margin-top: 10px; color: var(--body); font-size: 11px; }.card:hover .writeup-link { color: var(--heading); }
+  .index-page,.detail-page { max-width: 900px; margin: 0 auto; }
+  .shell.catalog { padding: 12px 0 32px; }.catalog .frame { max-width: none; }
+  .back { color: var(--muted); font-size: 13px; text-decoration: none; }.back:hover { color: var(--heading); }.detail-intro { padding: 30px 0; }.detail-intro h1 { max-width: 750px; font-size: 34px; }.detail-intro p { max-width: 720px; color: var(--body); font-size: 15px; line-height: 1.75; margin-top: 15px; }.repository { display: inline-block; margin-top: 18px; color: var(--body); text-decoration: none; font-size: 12px; }
+  .intro,.selected,.card-copy { min-width: 0; }
+  @media(max-width: 850px) { .landing { gap: 28px; padding: 28px; }.intro { gap: 20px; }h1 { font-size: 31px; }.bio { font-size: 14px; }.card { grid-template-columns: 85px minmax(0,1fr); }.card-copy { padding: 15px; }.card h3 { font-size: 17px; } }
+  @media(max-width: 650px) {
+    .header-inner { min-height: 62px; padding: 0 22px; }header nav { gap: 25px; }header a { font-size: 13px; }
+    .shell { padding: 20px 14px; }.shell.home { display: block; min-height: calc(100svh - 63px); }.landing { grid-template-columns: 1fr; gap: 28px; padding: 20px; border-radius: 22px; }.intro { gap: 17px; }h1 { font-size: 32px; }.bio { font-size: 14px; line-height: 1.7; }.socials { gap: 12px; margin-left: -9px; }.socials a { width: 48px; height: 48px; flex: 0 0 48px; }
+    .cards { gap: 18px; }.card { min-height: 0; grid-template-columns: minmax(0,1fr); border-radius: 12px; }.card-image { width: 100%; aspect-ratio: 16 / 10; border-right: 0; border-bottom: 1px solid var(--border); }.card-copy { padding: 18px; }.card h3 { font-size: 19px; }.card p { font-size: 14px; line-height: 1.6; }.writeup-link { font-size: 13px; margin-top: 14px; }
+    .detail-intro h1 { font-size: 29px; }
   }
+  @media(max-width: 360px) { .header-inner { padding-inline: 18px; }.shell { padding: 16px 12px; }.landing { padding: 16px; }.intro { gap: 17px; }h1 { font-size: 29px; }.card-copy { padding: 14px; } }
+  @media(prefers-reduced-motion: reduce) { .card { transition: none; } }
 </style>

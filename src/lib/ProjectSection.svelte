@@ -1,7 +1,6 @@
 <script lang="ts">
     import EditableProjectCard from './EditableProjectCard.svelte';
     import EditableText from './EditableText.svelte';
-    import { editMode, getSavedJSON, saveJSON } from './editStore';
 
     export let title: string = "";
     export let sectionKey: string = "";
@@ -9,34 +8,23 @@
         title: string;
         description: string;
         image: string;
+        imageAlt?: string;
+        imageFit?: 'cover' | 'contain';
         link: string;
+        slug?: string;
     }> = [];
 
-    let localProjects = getSavedJSON(`section_${sectionKey}`, projects);
+    $: localProjects = projects;
 
-    $: if (projects !== localProjects) {
-        localProjects = getSavedJSON(`section_${sectionKey}`, projects);
+    function writeupFor(project: { slug?: string; link: string }) {
+        const slug = project.slug || projects.find(original => original.link === project.link)?.slug;
+        return slug ? `#/projects/${slug}` : '';
     }
 
-    function addProject() {
-        localProjects = [...localProjects, {
-            title: "New Project",
-            description: "Project description...",
-            image: "",
-            link: "#"
-        }];
-        saveJSON(`section_${sectionKey}`, localProjects);
+    function originalFor(project: { slug?: string; link: string }) {
+        return projects.find(original => (project.slug && original.slug === project.slug) || original.link === project.link);
     }
 
-    function handleRemove(e: CustomEvent<{ sectionKey: string; index: number }>) {
-        if (e.detail.sectionKey !== sectionKey) return;
-        localProjects = localProjects.filter((_: unknown, i: number) => i !== e.detail.index);
-        saveJSON(`section_${sectionKey}`, localProjects);
-    }
-
-    if (typeof window !== 'undefined') {
-        window.addEventListener('removeproject', handleRemove as EventListener);
-    }
 </script>
 
 <section class="section">
@@ -49,24 +37,17 @@
             />
         </h2>
         <div class="grid">
-            {#each localProjects as project, i}
+            {#each localProjects as project}
                 <EditableProjectCard
-                    index={i}
-                    sectionKey={sectionKey}
                     title={project.title}
                     description={project.description}
-                    image={project.image}
+                    image={originalFor(project)?.image || project.image}
+                    imageAlt={originalFor(project)?.imageAlt || project.title}
+                    imageFit={originalFor(project)?.imageFit || 'cover'}
                     link={project.link}
+                    writeupLink={writeupFor(project)}
                 />
             {/each}
-            {#if $editMode}
-                <button class="add-card" on:click={addProject}>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
-                        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-                    </svg>
-                    <span>Add Project</span>
-                </button>
-            {/if}
         </div>
     </div>
 </section>
@@ -74,7 +55,7 @@
 <style>
     .section {
         padding: 0.75rem 2rem;
-        background: #ffffff;
+        background: var(--bg);
     }
 
     .container {
@@ -86,7 +67,7 @@
         font-size: 2rem;
         font-weight: 600;
         margin: 0 0 0.25rem 0;
-        color: #222;
+        color: var(--heading);
     }
 
     .grid {
@@ -95,28 +76,7 @@
         gap: 2rem;
     }
 
-    .add-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        min-height: 280px;
-        border: 2px dashed #ccc;
-        border-radius: 8px;
-        background: transparent;
-        color: #999;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-family: "Mozilla Headline", sans-serif;
-        font-size: 0.9rem;
-    }
 
-    .add-card:hover {
-        border-color: #6366f1;
-        color: #6366f1;
-        background: rgba(99, 102, 241, 0.04);
-    }
 
     @media (max-width: 1024px) {
         .grid {
@@ -140,24 +100,4 @@
         }
     }
 
-    @media (prefers-color-scheme: dark) {
-        .section {
-            background: #0a0a0a;
-        }
-
-        h2 {
-            color: #fff;
-        }
-
-        .add-card {
-            border-color: #444;
-            color: #666;
-        }
-
-        .add-card:hover {
-            border-color: #818cf8;
-            color: #818cf8;
-            background: rgba(129, 140, 248, 0.06);
-        }
-    }
 </style>

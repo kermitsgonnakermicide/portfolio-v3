@@ -1,0 +1,64 @@
+[
+  {
+    "file": "arrhythmix.png",
+    "source": "https://raw.githubusercontent.com/TTF-fog/ArrythmiX/c14178aecb9cb1e8a9bd378eddab468108a20f9e/images/img_1.png",
+    "repository": "https://github.com/TTF-fog/ArrythmiX"
+  },
+  {
+    "file": "lattice.png",
+    "source": "https://raw.githubusercontent.com/kermitsgonnakermicide/Lattice/2c27d14e4b2330c1390f03d948ebfae54c11a9d4/Assets/keyboard%20with%20macropad.png",
+    "repository": "https://github.com/kermitsgonnakermicide/Lattice"
+  },
+  {
+    "file": "spooderbot.png",
+    "source": "https://raw.githubusercontent.com/kermitsgonnakermicide/spooderbot/7deb47a28764e659bfd21694b68f9e00aaff784c/Assets/roburobu.png",
+    "repository": "https://github.com/kermitsgonnakermicide/spooderbot"
+  },
+  {
+    "file": "robodog.png",
+    "source": "https://raw.githubusercontent.com/kermitsgonnakermicide/robodog/9f649c1b0a8db9e4b406067693ab77fb0c89ff90/image-1.png",
+    "repository": "https://github.com/kermitsgonnakermicide/robodog"
+  },
+  {
+    "file": "3dprinter.png",
+    "source": "https://raw.githubusercontent.com/kermitsgonnakermicide/3DPrinter/8cce1073cc0ea990f85fc2eeb1fcadb65d5983f2/ASSETS/3dprinter%20v21.png",
+    "repository": "https://github.com/kermitsgonnakermicide/3DPrinter"
+  },
+  {
+    "file": "andytracker.png",
+    "source": "https://raw.githubusercontent.com/kermitsgonnakermicide/AndyTracker/bc6a0b5b897dd0be8b4f6e28f9fc78b20ae6a9d8/Assets/model.png",
+    "repository": "https://github.com/kermitsgonnakermicide/AndyTracker"
+  },
+  {
+    "file": "startupsim.jpg",
+    "source": "https://raw.githubusercontent.com/kermitsgonnakermicide/startupsim/52b9e2aa3a81c78f60dabac2eb561b415ffab2ac/logo.jpg",
+    "repository": "https://github.com/kermitsgonnakermicide/startupsim"
+  },
+  {
+    "file": "arrhythmix-board.png",
+    "repository": "https://github.com/TTF-fog/ArrythmiX",
+    "source": "https://github.com/TTF-fog/ArrythmiX/blob/master/Hardware/PCB/PCB.kicad_pcb",
+    "method": "KiCad 9 CLI render of actual PCB; some component models are unavailable."
+  },
+  {
+    "file": "rcj-poster.png",
+    "source": "User-supplied Robot Inventors Legacy poster",
+    "method": "Unmodified original attachment"
+  },
+  {
+    "file": "spidr.png",
+    "source": "User-supplied SPIDR prototype photo",
+    "method": "Unmodified original attachment"
+  },
+  {
+    "file": "usb-2fa-key.png",
+    "repository": "https://github.com/kermitsgonnakermicide/usb-2fa-key",
+    "source": "https://github.com/kermitsgonnakermicide/usb-2fa-key/blob/main/PCB/picokey.kicad_pcb",
+    "method": "KiCad 9 CLI render of actual PCB"
+  },
+  {
+    "file": "arrhythmix-device.jpeg",
+    "source": "User-supplied ArrhythmiX device composite",
+    "method": "Original file; middle device photograph selected by SVG viewport in ProjectImage.svelte"
+  }
+]
