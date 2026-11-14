@@ -29,7 +29,11 @@
 
     {#if project}
       <nav class="references" aria-label="Project documentation">
-        {#if slug === 'catbot-jet'}<a href="/projects/rcj-poster.png" target="_blank" rel="noopener noreferrer">Team poster ↗</a>
+        {#if slug === 'arrhythmix'}
+          <a href="https://blueprint.hackclub.com/projects/1308" target="_blank" rel="noopener noreferrer">Build journal ↗</a>
+          <a href="https://github.com/TTF-fog/ArrythmiX/blob/master/Doc/Synopsis.md" target="_blank" rel="noopener noreferrer">Project synopsis ↗</a>
+          <a href="https://github.com/TTF-fog/ArrythmiX/blob/master/BOM.csv" target="_blank" rel="noopener noreferrer">Bill of materials ↗</a>
+        {:else if slug === 'catbot-jet'}<a href="/projects/rcj-poster.png" target="_blank" rel="noopener noreferrer">Team poster ↗</a>
         {:else if slug === 'usb-2fa-key'}<a href="https://blueprint.hackclub.com/projects/276" target="_blank" rel="noopener noreferrer">Build journal ↗</a>
         {:else if withBOM.includes(slug)}<a href={`${project.link}#readme`} target="_blank" rel="noopener noreferrer">README &amp; bill of materials ↗</a>{/if}
         <a href={project.link} target="_blank" rel="noopener noreferrer">{slug === 'catbot-jet' ? 'Earlier CatBot JET repository' : 'Source files'} ↗</a>

@@ -45,7 +45,7 @@
           <nav class="socials" aria-label="Social links">
             <a href="https://github.com/kermitsgonnakermicide" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.5 5.5 0 0 0 20 4.8 5.1 5.1 0 0 0 19.9 1S18.7.6 16 2.5a13 13 0 0 0-8 0C5.3.6 4.1 1 4.1 1A5.1 5.1 0 0 0 4 4.8a5.5 5.5 0 0 0-1.5 3.8c0 5.5 3.3 6.6 6.4 7A3.4 3.4 0 0 0 8 18.2V22"/></svg></a>
             <a href="https://www.linkedin.com/in/daksh-vohra" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-            <a href="mailto:dakshvohra@proton.me" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7.5L22 6"/></svg></a>
+            <a href="mailto:daksh@modubotics.in" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7.5L22 6"/></svg></a>
           </nav>
           <PressLinks />
         </section>
