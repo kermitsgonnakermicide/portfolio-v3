@@ -1,4 +1,5 @@
 <script lang="ts">
+  import PressLinks from './lib/PressLinks.svelte'
   import ProjectImage from './lib/ProjectImage.svelte'
   import { onMount } from 'svelte'
   import { projects, projectGroups } from './lib/projects'
@@ -46,6 +47,7 @@
             <a href="https://www.linkedin.com/in/daksh-vohra" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
             <a href="mailto:dakshvohra@proton.me" aria-label="Email" title="Email"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7.5L22 6"/></svg></a>
           </nav>
+          <PressLinks />
         </section>
         <section class="selected" aria-label="Featured projects">
           <div class="cards">

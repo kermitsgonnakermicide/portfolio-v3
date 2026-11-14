@@ -1,4 +1,5 @@
 <script lang="ts">
+  import PressLinks from './PressLinks.svelte'
   import ProjectImage from './ProjectImage.svelte'
   import { writeups } from './writeups'
   import { projects } from './projects'
@@ -21,6 +22,7 @@
         {:else if slug === 'usb-2fa-key'}<figcaption>Rendered from the project’s KiCad PCB. Some component models are unavailable.</figcaption>{/if}
       </figure>
     {/if}
+    {#if slug === 'arrhythmix'}<div class="press-links"><PressLinks all /></div>{/if}
     <div class="article-body">
       {#each paragraphs as paragraph}<p>{paragraph}</p>{/each}
     </div>
@@ -38,6 +40,7 @@
 
 <style>
   .writeup { border-top: 1px solid var(--border); padding-top: 23px; }
+  .press-links { margin-bottom: 24px; }
   .article-body { max-width: 72ch; color: var(--body); font-size: 16px; line-height: 1.85; overflow-wrap: anywhere; }
   .article-body p + p { margin-top: 1.4em; }
   figure { margin: 0 0 32px; }
