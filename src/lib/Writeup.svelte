@@ -33,7 +33,7 @@
         <a href={project.link} target="_blank" rel="noopener noreferrer">{slug === 'catbot-jet' ? 'Earlier CatBot JET repository' : 'Source files'} ↗</a>
       </nav>
     {/if}
-  {:else}<p class="empty">No writeup published yet.</p>{/if}
+  {:else}<p class="empty">our magical wizard<s>s</s> will put something here soon™️</p>{/if}
 </section>
 
 <style>
@@ -41,7 +41,7 @@
   .article-body { max-width: 72ch; color: var(--body); font-size: 16px; line-height: 1.85; overflow-wrap: anywhere; }
   .article-body p + p { margin-top: 1.4em; }
   figure { margin: 0 0 32px; }
-  .lead-image { width: 100%; height: clamp(180px, 45vw, 480px); background: var(--image-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .lead-image { width: 100%; background: transparent; overflow: hidden; }
   figcaption { margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.6; }
 
   .references { display: flex; flex-wrap: wrap; gap: 16px 24px; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); }

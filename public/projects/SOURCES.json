@@ -60,5 +60,20 @@
     "file": "arrhythmix-device.jpeg",
     "source": "User-supplied ArrhythmiX device composite",
     "method": "Original file; middle device photograph selected by SVG viewport in ProjectImage.svelte"
+  },
+  {
+    "file": "arrhythmix-open-device.svg",
+    "source": "arrhythmix-device.jpeg",
+    "method": "SVG viewport and clip select only the middle open-device photograph; original pixels embedded unchanged."
+  },
+  {
+    "file": "rcj-robot.svg",
+    "source": "rcj-poster.png",
+    "method": "Original poster pixels isolated with an SVG clipping path around the robot; no generated content."
+  },
+  {
+    "file": "rcj-robot.png",
+    "source": "User-supplied RCJ robot photograph",
+    "method": "Original attachment, unmodified"
   }
 ]

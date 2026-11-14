@@ -43,7 +43,7 @@
                     description={project.description}
                     image={originalFor(project)?.image || project.image}
                     imageAlt={originalFor(project)?.imageAlt || project.title}
-                    imageFit={originalFor(project)?.imageFit || 'cover'}
+                    imagePosition={project.slug === 'catbot-jet' ? '50% 35%' : project.slug === 'arrhythmix' ? '52% 50%' : '50% 50%'}
                     link={project.link}
                     writeupLink={writeupFor(project)}
                 />

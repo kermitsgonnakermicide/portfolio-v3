@@ -15,7 +15,7 @@ export const projects: Project[] = [
   {
     "title": "ArrhythmiX",
     "description": "A wearable ECG research prototype with wireless acquisition, signal processing and machine-learning analysis.",
-    "image": "/projects/arrhythmix-device.jpeg",
+    "image": "/projects/arrhythmix-open-device.svg",
     "link": "https://github.com/TTF-fog/ArrythmiX",
     "category": "Hardware",
     "slug": "arrhythmix",
@@ -37,12 +37,12 @@ export const projects: Project[] = [
   {
     "title": "RoboCup Junior Rescue Line",
     "description": "Robot Inventors Legacy: a Raspberry Pi 5 rescue robot that follows lines, collects victims and sorts them into rescue zones.",
-    "image": "/projects/rcj-poster.png",
+    "image": "/projects/rcj-robot.png",
     "link": "https://github.com/kermitsgonnakermicide/catbot-jet",
     "category": "Hardware",
     "slug": "catbot-jet",
     "featured": true,
-    "imageAlt": "Robot Inventors Legacy team poster showing the rescue robot, hardware and software",
+    "imageAlt": "Robot Inventors Legacy rescue robot on a wooden table",
     "imageFit": "contain"
   },
   {

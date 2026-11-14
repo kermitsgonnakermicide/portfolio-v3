@@ -5,7 +5,7 @@
     export let description: string = "";
     export let image: string = "";
     export let imageAlt: string = "";
-    export let imageFit: 'cover' | 'contain' = 'cover';
+    export let imagePosition = '50% 50%';
     export let link: string = "#";
     export let writeupLink: string = "";
 
@@ -13,7 +13,7 @@
 
 <article class="card">
     {#if image}<div class="image-container">
-        <ProjectImage src={image} alt={imageAlt || title} fit={imageFit} />
+        <ProjectImage src={image} alt={imageAlt || title} fit="cover" position={imagePosition} />
     </div>{/if}
     <div class="content">
         <h3>
@@ -32,6 +32,7 @@
     .card {
         background: var(--surface);
         border: 1px solid var(--border);
+        border-radius: 12px;
         overflow: hidden;
         transition: all 0.3s ease;
         display: flex;
@@ -40,9 +41,8 @@
     }
 
     .card:hover {
-        border-color: var(--muted);
         transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+
     }
 
 
@@ -50,13 +50,16 @@
 
     .image-container {
         width: 100%;
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 4 / 3;
+        border-radius: 0;
         overflow: hidden;
-        background: var(--image-bg);
+        background: transparent;
     }
 
+    .image-container :global(img) { width: 100%; height: 100%; }
+
     .content {
-        padding: 1.5rem;
+        padding: 1.25rem;
         display: flex;
         flex-direction: column;
         flex: 1;
