@@ -89,26 +89,26 @@
   .frame { width: 100%; max-width: 1036px; margin: 0 auto; }
   .landing { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: center; gap: 40px; padding: 36px; border: 1px solid var(--border); border-radius: 26px; background: var(--surface); }
   .intro { display: grid; gap: 23px; }
-  h1 { font-size: 36px; line-height: 1.16; font-weight: 600; letter-spacing: -.025em; color: var(--heading); }
-  .bio { grid-column: 1/-1; color: var(--body); font-size: 16px; line-height: 1.75; font-weight: 300; }
+  h1 { font-size: 40px; line-height: 1.16; font-weight: 600; letter-spacing: -.025em; color: var(--heading); }
+  .bio { grid-column: 1/-1; color: var(--body); font-size: 18px; line-height: 1.75; font-weight: 300; }
   .bio a { color: var(--text); text-decoration: underline; text-decoration-color: var(--muted); text-underline-offset: 3px; overflow-wrap: anywhere; }.bio a:hover { color: var(--heading); text-decoration-color: currentColor; }
   .socials { grid-column: 1/-1; display: flex; gap: 12px; }.socials a { width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; color: var(--muted); border-radius: 6px; }.socials a:hover { color: var(--heading); background: var(--surface); }.socials svg { width: 28px; height: 28px; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
   .cards { display: flex; flex-direction: column; gap: 28px; }
   .card { display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 1fr); align-items: center; gap: 18px; color: inherit; text-decoration: none; border-radius: 8px; }
   .card-image { min-width: 0; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 8px; }
   .card-image :global(img) { width: 100%; height: 100%; }
-  .card-copy { padding: 0; }.card h3 { color: var(--text); font-weight: 600; font-size: 18px; line-height: 1.25; }.card p { margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 1.55; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }.writeup-link { display: inline-block; margin-top: 10px; color: var(--body); font-size: 11px; }.card:hover .writeup-link { color: var(--heading); }
+  .card-copy { padding: 0; }.card h3 { color: var(--text); font-weight: 600; font-size: 20px; line-height: 1.3; }.card p { margin-top: 7px; color: var(--muted); font-size: 14px; line-height: 1.6; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }.writeup-link { display: inline-block; margin-top: 10px; color: var(--body); font-size: 13px; }.card:hover .writeup-link { color: var(--heading); }
   .index-page,.detail-page { max-width: 900px; margin: 0 auto; }
   .shell.catalog { padding: 12px 0 32px; }.catalog .frame { max-width: none; }
   .back { color: var(--muted); font-size: 13px; text-decoration: none; }.back:hover { color: var(--heading); }.detail-intro { padding: 30px 0; }.detail-intro h1 { max-width: 750px; font-size: 34px; }.detail-intro p { max-width: 720px; color: var(--body); font-size: 15px; line-height: 1.75; margin-top: 15px; }.repository { display: inline-block; margin-top: 18px; color: var(--body); text-decoration: none; font-size: 12px; }
   .intro,.selected,.card-copy { min-width: 0; }
-  @media(max-width: 850px) { .landing { gap: 28px; padding: 28px; }.intro { gap: 20px; }h1 { font-size: 31px; }.bio { font-size: 14px; }.card { gap: 14px; }.card h3 { font-size: 17px; } }
+  @media(max-width: 850px) { .landing { gap: 28px; padding: 28px; }.intro { gap: 20px; }h1 { font-size: 36px; }.bio { font-size: 17px; }.card { gap: 14px; }.card h3 { font-size: 19px; } }
   @media(max-width: 650px) {
     .header-inner { min-height: 62px; padding: 0 22px; }header nav { gap: 25px; }header a { font-size: 13px; }
-    .shell { padding: 20px 14px; }.shell.home { display: block; min-height: calc(100svh - 63px); }.landing { grid-template-columns: 1fr; gap: 28px; padding: 20px; border-radius: 22px; }.intro { gap: 17px; }h1 { font-size: 32px; }.bio { font-size: 14px; line-height: 1.7; }.socials { gap: 12px; margin-left: -9px; }.socials a { width: 56px; height: 56px; flex: 0 0 56px; }
-    .cards { gap: 30px; }.card { grid-template-columns: minmax(0,1fr); gap: 14px; }.card-image { width: 100%; }.card-copy { padding: 0; }.card h3 { font-size: 19px; }.card p { font-size: 14px; line-height: 1.6; }.writeup-link { font-size: 13px; margin-top: 14px; }
+    .shell { padding: 20px 14px; }.shell.home { display: block; min-height: calc(100svh - 63px); }.landing { grid-template-columns: 1fr; gap: 28px; padding: 20px; border-radius: 22px; }.intro { gap: 17px; }h1 { font-size: 36px; }.bio { font-size: 14px; line-height: 1.7; }.socials { gap: 12px; margin-left: -9px; }.socials a { width: 56px; height: 56px; flex: 0 0 56px; }
+    .cards { gap: 30px; }.card { grid-template-columns: minmax(0,1fr); gap: 14px; }.card-image { width: 100%; }.card-copy { padding: 0; }.card h3 { font-size: 21px; }.card p { font-size: 16px; line-height: 1.6; }.writeup-link { font-size: 14px; margin-top: 14px; }
     .detail-intro h1 { font-size: 29px; }
   }
-  @media(max-width: 360px) { .header-inner { padding-inline: 18px; }.shell { padding: 16px 12px; }.landing { padding: 16px; }.intro { gap: 17px; }h1 { font-size: 29px; } }
+  @media(max-width: 360px) { .header-inner { padding-inline: 18px; }.shell { padding: 16px 12px; }.landing { padding: 16px; }.intro { gap: 17px; }h1 { font-size: 32px; } }
 
 </style>

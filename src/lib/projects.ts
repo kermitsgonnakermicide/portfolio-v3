@@ -2,7 +2,7 @@ export type Project = { slug: string; title: string; description: string; image:
 
 export const projects: Project[] = [
   {
-    "title": "SPIDR — Hexapod Navigation System",
+    "title": "SPIDR - Hexapod Locomotion & Perception research",
     "description": "Novel perception, navigation and locomotion pipeline for hexapod robots in unstructured environments, now part of modubotics",
     "image": "/projects/spidr.png",
     "link": "https://github.com/kermitsgonnakermicide/SPIDR",
